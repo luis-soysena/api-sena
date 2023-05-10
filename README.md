@@ -13,9 +13,9 @@ Luego procedemos con:
 
 - Abril la terminal e ir a la carpeta donde queremos clonar el repositorio.
 
-- Clonar este repositorio.
+- Clonar este repositorio ```git clone https://github.com/luis-soysena/api-sena.git```
 
-- Ingresar a la carpeta api-sena ```cd api-sena````
+- Ingresar a la carpeta api-sena ```cd api-sena```
 
 - Crear el archivo .env.local con la siguiente información, ingresar las credenciales de la base de datos según la que haya creado localmente:
 
@@ -27,13 +27,12 @@ Luego procedemos con:
   MYSQL_PASSWD = "root"
   MYSQL_HOST = "localhost"
   MYSQL_DB = "api_sena"
-
   ```
 
   Para la API KEY esta debe coincidir con la que se configure en la app front.
 
-- Ejecutar ```npm install````
+- Ejecutar ```npm install```
 
-- Ejecutar ```npm start````
+- Ejecutar ```npm start```
 
 - Visitar http://localhost:5007/api/v1/
