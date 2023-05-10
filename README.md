@@ -22,7 +22,7 @@ Luego proceda con los siguientes pasos:
   API_PORT = 5007
   API_PATH = "/api/v1/"
   API_KEY = "ef$4t35y$G$F34Y&%KRYTY&KU$ENwuEK"
-  MONGO_URI = "MONGO_ATLAS_URI_HERE"
+  MONGO_URI = "MONGO_CLUSTER_URI_AQUI"
   ```
 
   *Para la API KEY esta debe coincidir con la que se configure en la app front*.
