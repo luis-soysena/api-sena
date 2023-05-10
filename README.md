@@ -17,7 +17,7 @@ Luego procedemos con:
 
 - Ingresar a la carpeta api-sena ```cd api-sena```
 
-- Crear el archivo .env.local con la siguiente información, ingresar las credenciales de la base de datos según la que haya creado localmente:
+- Crear el archivo .env.local con la siguiente información, ingresar la información de la base de datos según la que haya creado localmente:
 
   ```
   API_PORT = 5007
@@ -25,14 +25,15 @@ Luego procedemos con:
   API_KEY = "ef$4t35y$G$F34Y&%KRYTY&KU$ENwuEK"
   MYSQL_USER = "root"
   MYSQL_PASSWD = "root"
-  MYSQL_HOST = "localhost"
   MYSQL_DB = "api_sena"
+  MYSQL_HOST = "localhost"
+  MYSQL_PORT = 3306
   ```
 
   Para la API KEY esta debe coincidir con la que se configure en la app front.
 
-- Ejecutar ```npm install```
+- Ejecutar ```npm install``` y espere a que se instalen los paquetes.
 
 - Ejecutar ```npm start```
 
-- Visitar http://localhost:5007/api/v1/
+- Ingrese a http://localhost:5007/api/v1/
