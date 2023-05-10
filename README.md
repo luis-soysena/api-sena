@@ -3,7 +3,6 @@
 ### Requisitos
 - Instalar Node.JS versión 16+
 - Instalar GIT (en su versión mas reciente).
-- Instalar MySQL Server o XAMPP
 
 ### Proceso de instalación de ambiente local
 
@@ -23,18 +22,12 @@ Luego proceda con los siguientes pasos:
   API_PORT = 5007
   API_PATH = "/api/v1/"
   API_KEY = "ef$4t35y$G$F34Y&%KRYTY&KU$ENwuEK"
-  MYSQL_USER = "root"
-  MYSQL_PASSWD = "root"
-  MYSQL_DB = "api_sena"
-  MYSQL_HOST = "localhost"
-  MYSQL_PORT = 3306
+  MONGO_URI = "MONGO_ATLAS_URI_HERE"
   ```
 
   *Para la API KEY esta debe coincidir con la que se configure en la app front*.
 
 - Ejecutar ```npm install``` y espere a que se instalen los paquetes.
-
-- Antes de iniciar la API es importante alimentar la base de datos local con datos de ejemplo, es por ello que encontrará un archivo ```.sql``` dentro de la carpeta ```src``` el cual podrá importar a su base de datos.
 
 - Luego ejecute ```npm start```
 
