@@ -9,15 +9,15 @@
 
 Para instalar localmente esta API se necesita primero que nada tener instaladas las herramientas indicadas en requisitos.
 
-Luego procedemos con:
+Luego proceda con los siguientes pasos:
 
-- Abril la terminal e ir a la carpeta donde queremos clonar el repositorio.
+- Abra la terminal y ubiquese en la carpeta donde quiera clonar el repositorio.
 
-- Clonar este repositorio ```git clone https://github.com/luis-soysena/api-sena.git```
+- Clone el repositorio ejecutando: ```git clone https://github.com/luis-soysena/api-sena.git```
 
-- Ingresar a la carpeta api-sena ```cd api-sena```
+- Ingrese a la carpeta *api-sena* ```cd api-sena```
 
-- Crear el archivo .env.local con la siguiente información, ingresar la información de la base de datos según la que haya creado localmente:
+- Cree el archivo ```.env``` con la siguiente información, cambie la información de la base de datos según la que haya creado localmente:
 
   ```
   API_PORT = 5007
@@ -30,10 +30,12 @@ Luego procedemos con:
   MYSQL_PORT = 3306
   ```
 
-  Para la API KEY esta debe coincidir con la que se configure en la app front.
+  *Para la API KEY esta debe coincidir con la que se configure en la app front*.
 
 - Ejecutar ```npm install``` y espere a que se instalen los paquetes.
 
-- Ejecutar ```npm start```
+- Antes de iniciar la API es importante alimentar la base de datos local con datos de ejemplo, es por ello que encontrará un archivo ```.sql``` dentro de la carpeta ```src``` el cual podrá importar a su base de datos.
 
-- Ingrese a http://localhost:5007/api/v1/
+- Luego ejecute ```npm start```
+
+- Ya puede ingresar a http://localhost:5007/api/v1/
