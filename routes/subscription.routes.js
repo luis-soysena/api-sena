@@ -13,7 +13,7 @@ router.get("/", (req, res) =>
 );
 
 // Find subscription by email
-router.get("/search/:email", (req, res) => 
+router.get("/search", (req, res) => 
   Subscription.findByEmail(req, res)
 );
 

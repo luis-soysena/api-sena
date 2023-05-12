@@ -1,12 +1,13 @@
 require("dotenv").config();
+require("./database");
+
 const express = require("express");
 const app = express();
 const cors = require("cors");
-require("./database");
+const apiKeyMiddleware = require("./middlewares/apiKey.middleware");
 
 const { API_PORT, API_PATH } = process.env;
-
-const port = API_PORT || 5008;
+const port = API_PORT || 5007;
 
 const corsOptions = {
   origin: "*",
@@ -17,6 +18,9 @@ app.use(cors(corsOptions));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Check API Key
+app.use(apiKeyMiddleware.check);
 
 // User routes
 const userRoutes = require("./routes/user.routes");

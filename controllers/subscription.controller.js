@@ -16,7 +16,7 @@ class SubscriptionController {
   }
 
   async findByEmail(req, res) {
-    const { email } = req.params;
+    const { email } = req.query;
     const data = await this.model.find({ email });
     res.status(200).send({
       code: 200,
@@ -35,16 +35,17 @@ class SubscriptionController {
       price,
     };
 
-    this.model.save(fields, (error) => {
-      if (!error) {
+    const subscription = new this.model(fields);
+
+    subscription
+      .save()
+      .then((sub) => {
         res.status(200).send({
           code: 200,
           message: "Subscription saved successfully!",
         });
-      } else {
-        this.handleError(error);
-      }
-    });
+      })
+      .catch((error) => this.handleError(res, error));
   }
 
   update(req, res) {
@@ -58,33 +59,37 @@ class SubscriptionController {
       price,
     };
 
-    const fieldsFiltered = fields.filter((field) => field !== "");
+    const fieldsFiltered = {};
 
-    this.model.updateOne({ email }, fieldsFiltered, (error) => {
-      if (!error) {
+    for (const [key, value] of Object.entries(fields)) {
+      if (value) {
+        fieldsFiltered[key] = value;
+      }
+    }
+
+    this.model
+      .updateOne({ email }, fieldsFiltered)
+      .then((subs) => {
         res.status(200).send({
           code: 200,
           message: "Subscription updated successfully!",
         });
-      } else {
-        this.handleError(error);
-      }
-    });
+      })
+      .catch((error) => this.handleError(res, error));
   }
 
   updateStatus(req, res) {
     const { email, status } = req.body;
 
-    this.model.updateOne({ email }, { status }, (error) => {
-      if (!error) {
+    this.model
+      .updateOne({ email }, { status })
+      .then((subs) => {
         res.status(200).send({
           code: 200,
           message: "Subscription updated successfully!",
         });
-      } else {
-        this.handleError(error);
-      }
-    });
+      })
+      .catch((error) => this.handleError(res, error));
   }
 
   delete(req, res) {
@@ -102,11 +107,11 @@ class SubscriptionController {
     });
   }
 
-  handleError(error) {
+  handleError(res, error) {
     res.status(500).send({
       code: 500,
       message: "An error has ocurred, please try again.",
-      error,
+      details: error,
     });
   }
 }
