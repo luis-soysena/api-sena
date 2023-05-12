@@ -1,12 +1,12 @@
 # API Suscripciones
 
 ### Requisitos
-- Instalar Node.JS versión 16+
-- Instalar GIT (en su versión mas reciente).
+- Node.JS 16+ ([descargar](https://nodejs.org/es/download))
+- Git ([descargar](https://git-scm.com/downloads))
 
 ### Proceso de instalación de ambiente local
 
-Para instalar localmente esta API se necesita primero que nada tener instaladas las herramientas indicadas en requisitos.
+Para instalar localmente esta API se necesita tener instaladas las herramientas indicadas en requisitos.
 
 Luego proceda con los siguientes pasos:
 
