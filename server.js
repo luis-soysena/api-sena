@@ -2,16 +2,13 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const mongoose = require("mongoose");
+require("./database");
 
-const { API_PORT, MONGO_URI, API_PATH } = process.env;
+const { API_PORT, API_PATH } = process.env;
 
 const port = API_PORT || 5008;
 
-mongoose.connect(MONGO_URI);
-mongoose.connection.on("open", () => console.log("Connected to mongo server."));
-
-var corsOptions = {
+const corsOptions = {
   origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE"],
   optionsSuccessStatus: 200,

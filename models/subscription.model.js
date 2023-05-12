@@ -1,15 +1,31 @@
 "use strict";
 
-const mongoose = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-const subscriptionSchema = new mongoose.Schema({
-  email: String,
-  start_date: Date,
-  end_date: Date,
-  status: Number,
-  price: Number,
+const subscriptionSchema = new Schema({
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  start_date: {
+    type: Date,
+    required: true
+  },
+  end_date: {
+    type: Date,
+    required: true
+  },
+  status: {
+    type: Number,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+}, {
+  timestamps: true
 });
 
-const SubscriptionModel = mongoose.model("SubscriptionModel", subscriptionSchema);
-
-module.exports = SubscriptionModel;
+module.exports = model("Subscription", subscriptionSchema);

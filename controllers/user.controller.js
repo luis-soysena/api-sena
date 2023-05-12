@@ -9,7 +9,7 @@ class UserController {
 
   login(req, res) {
     const {email, passwd} = req.body;
-    //ToDo
+    // QUERY to get user info
   }
 
   create(req, res) {

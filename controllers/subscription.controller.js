@@ -4,19 +4,18 @@ class SubscriptionController {
   model;
 
   constructor(model) {
-    // This model has all mongoose methods to get data from database
     this.model = model;
   }
 
-  findAll(req, res) {
-    res.status(200).send({
-      code: 200,
-      data: [],
-    });
+  async findAll(req, res) {
+    const data = await this.model.find({});
+    res.status(200).send({ data });
   }
 
-  findByEmail(req, res) {
-    const email = req.params.email;
+  async findByEmail(req, res) {
+    const { email } = req?.params;
+    const data = await this.model.find({ email });
+    res.status(200).send({ data });
   }
 }
 
