@@ -20,7 +20,7 @@ Luego proceda con los siguientes pasos:
 
   ```
   API_PORT = 5007
-  API_PATH = "/api/v1/"
+  API_PATH = "/api/v1"
   API_KEY = "ef$4t35y$G$F34Y&%KRYTY&KU$ENwuEK"
   MONGO_URI = "MONGO_CLUSTER_URI_AQUI"
   ```

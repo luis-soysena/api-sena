@@ -101,11 +101,11 @@ class SubscriptionController {
     this.model
       .deleteOne({ email })
       .then((response) => {
-        const code = response?.modifiedCount > 0 ? 200 : 404;
-        const message =
-          response?.modifiedCount > 0
-            ? "Subscription deleted successfully!"
-            : "Subscription doesn't exist!";
+        const wasDeleted = response?.deletedCount > 0;
+        const code = wasDeleted ? 200 : 404;
+        const message = wasDeleted
+          ? "Subscription deleted successfully!"
+          : "Subscription doesn't exist!";
 
         res.status(code).send({ code, message });
       })
