@@ -8,20 +8,32 @@ class SubscriptionController {
   }
 
   async findAll(req, res) {
-    const data = await this.model.find({});
-    res.status(200).send({
-      code: 200,
-      data,
-    });
+    try {
+      const data = await this.model.find({});
+      res.status(200).send({
+        code: 200,
+        data,
+      });
+    } catch(error) {
+      this.handleError({res, error});
+    }
   }
 
   async findByEmail(req, res) {
     const { email } = req.query;
     const data = await this.model.findOne({ email });
-    res.status(200).send({
-      code: 200,
-      data,
-    });
+    if (data) {
+      res.status(200).send({
+        code: 200,
+        data,
+      });
+    } else {
+      this.handleError({
+        res,
+        code: 404,
+        message: "Subscription doesn't exist!",
+      });
+    }
   }
 
   save(req, res) {
@@ -44,7 +56,7 @@ class SubscriptionController {
           response,
         });
       })
-      .catch((error) => this.handleError(res, error));
+      .catch((error) => this.handleError({ res, error }));
   }
 
   update(req, res) {
@@ -75,7 +87,7 @@ class SubscriptionController {
 
         res.status(code).send({ code, message });
       })
-      .catch((error) => this.handleError(res, error));
+      .catch((error) => this.handleError({ res, error }));
   }
 
   updateStatus(req, res) {
@@ -92,7 +104,7 @@ class SubscriptionController {
 
         res.status(code).send({ code, message });
       })
-      .catch((error) => this.handleError(res, error));
+      .catch((error) => this.handleError({ res, error }));
   }
 
   delete(req, res) {
@@ -109,13 +121,18 @@ class SubscriptionController {
 
         res.status(code).send({ code, message });
       })
-      .catch((error) => this.handleError(res, error));
+      .catch((error) => this.handleError({ res, error }));
   }
 
-  handleError(res, error) {
-    res.status(500).send({
-      code: 500,
-      message: "An error has ocurred, please try again.",
+  handleError({
+    res,
+    error = "No details.",
+    code = 500,
+    message = "An error has ocurred, please try again.",
+  }) {
+    res.status(code).send({
+      code,
+      message,
       details: error,
     });
   }

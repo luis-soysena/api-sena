@@ -9,7 +9,7 @@ class UserController {
   async findByEmail(req, res) {
     const { email } = req.query;
     const data = await this.model.findOne({ email });
-    
+
     if (data) {
       const userInfo = {
         email,
@@ -90,7 +90,7 @@ class UserController {
 
         res.status(code).send({ code, message });
       })
-      .catch((error) => this.handleError(res, error));
+      .catch((error) => this.handleError({ res, error }));
   }
 
   delete(req, res) {
@@ -107,7 +107,7 @@ class UserController {
 
         res.status(code).send({ code, message });
       })
-      .catch((error) => this.handleError(res, error));
+      .catch((error) => this.handleError({ res, error }));
   }
 
   handleError({
