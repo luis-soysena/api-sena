@@ -32,3 +32,5 @@ Luego proceda con los siguientes pasos:
 - Luego ejecute ```npm start```
 
 - Ya puede ingresar a http://localhost:5007/api/v1/
+
+Para conocer los endpoints y detalles de la API, visite la documentación en Postman, [clic aquí](https://www.postman.com/luchoweb/workspace/sena/collection/5536734-de773936-5e2f-48df-9aa2-9e16abe00325?action=share&creator=5536734).
