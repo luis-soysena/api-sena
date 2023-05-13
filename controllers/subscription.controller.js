@@ -17,7 +17,7 @@ class SubscriptionController {
 
   async findByEmail(req, res) {
     const { email } = req.query;
-    const data = await this.model.find({ email });
+    const data = await this.model.findOne({ email });
     res.status(200).send({
       code: 200,
       data,
@@ -26,7 +26,6 @@ class SubscriptionController {
 
   save(req, res) {
     const { email, start_date, end_date, status, price } = req.body;
-
     const fields = {
       email,
       start_date,
@@ -34,15 +33,15 @@ class SubscriptionController {
       status,
       price,
     };
-
     const subscription = new this.model(fields);
 
     subscription
       .save()
-      .then((sub) => {
+      .then((response) => {
         res.status(200).send({
           code: 200,
           message: "Subscription saved successfully!",
+          response,
         });
       })
       .catch((error) => this.handleError(res, error));
@@ -50,7 +49,6 @@ class SubscriptionController {
 
   update(req, res) {
     const { email, start_date, end_date, status, price } = req.body;
-
     const fields = {
       email,
       start_date,
@@ -58,7 +56,6 @@ class SubscriptionController {
       status,
       price,
     };
-
     const fieldsFiltered = {};
 
     for (const [key, value] of Object.entries(fields)) {
@@ -69,11 +66,14 @@ class SubscriptionController {
 
     this.model
       .updateOne({ email }, fieldsFiltered)
-      .then((subs) => {
-        res.status(200).send({
-          code: 200,
-          message: "Subscription updated successfully!",
-        });
+      .then((response) => {
+        const code = response?.modifiedCount > 0 ? 200 : 404;
+        const message =
+          response?.modifiedCount > 0
+            ? "Subscription updated successfully!"
+            : "Subscription doesn't exist!";
+
+        res.status(code).send({ code, message });
       })
       .catch((error) => this.handleError(res, error));
   }
@@ -83,11 +83,14 @@ class SubscriptionController {
 
     this.model
       .updateOne({ email }, { status })
-      .then((subs) => {
-        res.status(200).send({
-          code: 200,
-          message: "Subscription updated successfully!",
-        });
+      .then((response) => {
+        const code = response?.modifiedCount > 0 ? 200 : 404;
+        const message =
+          response?.modifiedCount > 0
+            ? "Subscription updated successfully!"
+            : "Subscription doesn't exist!";
+
+        res.status(code).send({ code, message });
       })
       .catch((error) => this.handleError(res, error));
   }
@@ -95,16 +98,18 @@ class SubscriptionController {
   delete(req, res) {
     const { email } = req.body;
 
-    this.model.deleteOne({ email }, (error) => {
-      if (!error) {
-        res.status(200).send({
-          code: 200,
-          message: "Subscription deleted successfully!",
-        });
-      } else {
-        this.handleError(error);
-      }
-    });
+    this.model
+      .deleteOne({ email })
+      .then((response) => {
+        const code = response?.modifiedCount > 0 ? 200 : 404;
+        const message =
+          response?.modifiedCount > 0
+            ? "Subscription deleted successfully!"
+            : "Subscription doesn't exist!";
+
+        res.status(code).send({ code, message });
+      })
+      .catch((error) => this.handleError(res, error));
   }
 
   handleError(res, error) {
